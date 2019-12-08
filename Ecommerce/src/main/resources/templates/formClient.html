@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Formulaire Etudiant</title>
+<link rel="stylesheet" type="text/css"
+href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css"
+href="../static/css/myStyle.css"
+th:href="@{/css/myStyle.css}"/>
+</head>
+<body>
+	<div class="container col-md-6  spacer40 col-md-offset-3">
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">Saisie d'un Client</div>
+		
+			<div class="panel-body">
+				<form th:action="@{saveClient}" method="post" th:object="${client}">
+				
+					<div class="form-group">
+					<label class="control-label">Nom: </label>
+					<input type="text" th:field="*{nom}" class="form-control"/>
+					<span th:errors="*{nom}" class="text-danger"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Prenome: </label>
+					<input type="text" th:field="*{prenom}" class="form-control"/>
+					<span th:errors="*{prenom}" class="text-danger"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Telephone: </label>
+					<input type="text" th:field="*{telephone}" class="form-control"/>
+					<span th:errors="*{telephone}" class="text-danger"></span>
+					</div>
+								
+					<div class="form-group">
+					<label class="control-label">Email: </label>
+					<input type="text" th:field="*{mail}" class="form-control"/>
+					<span th:errors="*{mail}" class="text-danger"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Password: </label>
+					<input type="password" th:field="*{password}" class="form-control"/>
+					<span th:errors="*{password}" class="text-danger"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Confirmer Password: </label>
+					<input type="password" name="confpassword" class="form-control"/>
+					<span th:errors="*{password}" class="text-danger"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Type: </label>
+					<select th:field="*{type}" class="form-control">
+   						<option value="client">client</option>
+  					</select>
+  					</div>
+					
+					<div class="text-danger" th:if="${message}" th:text="${message}"></div>
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+							
+				</form>
+			</div>
+		
+	</div>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Formulaire Produit</title>
+<link rel="stylesheet" type="text/css"
+href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css"
+href="../static/css/myStyle.css"
+th:href="@{/css/myStyle.css}"/>
+</head>
+<body>
+	<div class="container col-md-6  spacer40 col-md-offset-3">
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">Saisie Produit</div>
+		
+			<div class="panel-body">
+			
+				
+			
+				<form th:action="@{/saveProduit(id=${#httpServletRequest.getParameter('id')})}" method="post" th:object="${produit}" enctype="multipart/form-data">
+				
+					<div class="form-group">
+					<label class="control-label">Nom: </label>
+					<input type="text" th:field="*{nom}" class="form-control"/>
+					<span th:errors="*{nom}" class="text-danger"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Prix: </label>
+					<input type="text" th:field="*{prix}" class="form-control"/>
+					<span th:errors="*{prix}" class="text-danger"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Quantité en Stock: </label>
+					<input type="text" th:field="*{quantitéenstock}" class="form-control"/>
+					<span th:errors="*{quantitéenstock}" class="text-danger"></span>
+					</div>
+							
+					<div class="form-group">
+					<label class="control-label">Photo: </label>
+					<input type="file" name="pictures" class="form-control"/> 
+					<span th:errors="*{photo}" class="text-danger"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Categorie: </label>
+					<select name="categorie">
+ 					<option th:each="cat:${listeCategorie}" th:text="${cat.nom}" th:value="${cat.idcat}" value="" ></option>
+					</select>
+					</div>
+	
+					
+						
+					<div>
+						<button type="submit" class="btn btn-primary" th:onsubmit="@{/saveProduit(categorie=Boisson)}">Save</button>
+					</div>
+							
+				</form>
+					
+			</div>
+		
+	</div>
+	</div>
+ <script>
+
+ function redirection()
+ {
+
+	 window.location.href="";
+ }
+ 
+ </script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8"/>
+<title>Home</title>
+<link rel="stylesheet" type="text/css"
+href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css"
+href="../static/css/myStyle.css"
+th:href="@{/css/myStyle.css}"/>
+</head>
+<body>
+
+<header>
+	<div class="navbar navbar-inverse">
+		<div class="container-fluid" >
+			<ul class="nav navbar-nav">
+				<li><a th:href="@{/home(id=${client.id})}">Home</a></li>
+				<li><a th:href="@{/ajouterCategorie(id=${client.id})}" th:if="${client.type=='admin'}">Ajouter Catégorie</a></li>
+				<li><a th:href="@{/ajouterProduit(id=${client.id})}" th:if="${client.type=='admin'}">Ajouter Produit</a></li>
+				<li><a th:href="@{/monPanier(id=${client.id})}" th:if="${client.type=='client'}">Mon Panier</a></li>
+			
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a th:href="@{/acces?logout}">Logout</a></li>
+				<li><a th:href="@{/profil}" th:text="${client.nom}">Logout</a></li>
+				
+			</ul>
+		</div>
+	</div>
+		
+</header>
+
+<section layout:fragment="content"></section>
+
+<footer class="navbar-fixed-bottom">
+	<small>@Tous les droits réservés</small>
+</footer>
+
+</body>
+</html>

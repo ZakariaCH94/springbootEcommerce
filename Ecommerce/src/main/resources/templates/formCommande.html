@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Formulaire Catégorie</title>
+<link rel="stylesheet" type="text/css"
+href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css"
+href="../static/css/myStyle.css"
+th:href="@{/css/myStyle.css}"/>
+</head>
+<body>
+	<div class="container col-md-6  spacer40 col-md-offset-3">
+	
+		<div class="panel panel-default">
+			<div class="panel-heading">Saisie Commande</div>
+		
+			<div class="panel-body">
+				<form th:action="@{saveCommande(idProduit=${Produit.idprod},idCategorie=${Categorie.idcat},idClient=${idclient})}" method="post">
+				
+					<div class="form-group">
+					<label class="control-label">Catégorie: </label>
+					<input type="hidden" name="nomCategorie" th:value="${Categorie.nom}"/>
+					<span class ="blue" th:text="${Categorie.nom}"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Produit: </label>
+					<input type="hidden" name="nomProduit" th:value="${Produit.nom}"/>
+					<span class ="blue" th:text="${Produit.nom}"></span>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label">Prix: </label>
+					<input type="hidden" name="prix" th:value="${Produit.prix}"/>
+					<span class ="blue" th:text="${Produit.prix}"></span>
+					</div>
+					
+					<div class="form-group">
+					
+					<label class="control-label">Quantité: </label>
+					<input type="text" th:name="quantite" th:value="${#httpServletRequest.getParameter('quantite')}" />
+					<label  class="red"> il retse que &nbsp; </label>
+					<label  class="red" th:text="${quantitestock}"></label>
+					<label  class="red"> &nbsp;&nbsp; unitée(s)</label>
+					</div>
+							
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				
+					<div class="text-danger"th:text="${#httpServletRequest.getParameter('message')}">
+				    </div>							
+				</form>
+				
+				
+			</div>
+		
+	</div>
+	</div>
+
+
+</body>
+</html>

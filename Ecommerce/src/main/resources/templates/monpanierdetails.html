@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"	
+	layout:decorator="template1">
+	
+<head>
+<meta charset="utf-8"/>
+<title>HOME</title>
+<link rel="stylesheet" type="text/css"
+href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css"
+href="../static/css/myStyle.css"
+th:href="@{/css/myStyle.css}"/>
+</head>
+<body>
+
+<div layout:fragment="content">
+	<section id="content" class="pad20">
+        <div class="container">
+           <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs nav-justified" role="tablist" id="prod-tabs">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Mes produits</a></li>
+    
+  </ul>
+  
+  <div class="green container" th:text="${#httpServletRequest.getParameter('message')}">
+  </div>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+		<div class="row">
+			<div class="col-sm-3" th:each="lc:${listecommande}">
+                    <div class="card">
+                       <img th:src="@{getPhotoprod(id=${lc.produit.idprod})}" alt="Card image cap" class="img-responsive" style="width: 200px;height: 200px;">
+                        <div class="card-block">
+                            <h4 class="card-title"><span th:text="${lc.produit.nom}"></span></h4>
+       
+                        </div>
+                        
+                        
+                    </div>
+                </div>  
+                                                                                          
+            </div>
+            
+       	<div class="container">
+					<ul class="nav nav-pills">
+						<li th:each="p:${pages}" th:class="${p==pageCourant}?active:''">
+							<a th:href="@{/consulterpanier(idClient=${client.id},date=${date},page=${p})}" th:text="${p}"></a>
+						</li>
+					</ul>
+	</div>     
+      </div>
+  
+  </div>
+
+</div>
+                     
+        </div>
+</section>           
+	
+</div>
+   
+</body>
+</html>
